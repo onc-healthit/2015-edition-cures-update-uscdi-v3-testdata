@@ -401,7 +401,7 @@
 					<!-- Alerts section template -->
 					<code code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
 					<title>ALLERGIES AND ADVERSE REACTIONS</title>
-					<text>No Known Allergies</text>
+					<text>Allergies</text>
 					<!-- replaced Allergy Problem Act (R1.1) with 
 					Allergy Concern Act (V3) to meet R2.1 validation requirements -DB-->
 					<entry typeCode="DRIV">
@@ -459,7 +459,115 @@
 								</observation>
 							</entryRelationship>
 						</act>
-					</entry>					
+					</entry>			
+					
+					<!-- USCDI v2 -->
+					<entry typeCode="DRIV">
+						<act classCode="ACT" moodCode="EVN">
+							<!-- ** Allergy Concern Act (V3) ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.30" extension="2015-08-01"/>
+							<!--Critical Change-->
+							<templateId root="2.16.840.1.113883.10.20.22.4.30"/>
+							<id root="36e3e930-7b14-11db-9fe1-0800200c9a66"/>
+							<code code="CONC" codeSystem="2.16.840.1.113883.5.6"/>
+							<!-- The statusCode represents the need to continue tracking the allergy -->
+							<!-- This is of ongoing concern to the provider -->
+							<statusCode code="active"/>
+							<effectiveTime>
+								<!-- The low value represents when the allergy was first recorded in the patient's chart -->
+								<low value="20150722"/>
+							</effectiveTime>
+							<entryRelationship typeCode="SUBJ">
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- ** Allergy observation (V2) ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.7" extension="2014-06-09"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.7"/>
+									<id root="4adc1020-7b14-11db-9fe1-0800200c9a66"/>
+									<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+									<!-- Observation statusCode represents the status of the act of observing -->
+									<statusCode code="completed"/>
+									<effectiveTime>
+										<!-- The low value reflects the date of onset of the allergy -->
+										<low value="20150722"/>
+										<!-- The high value reflects when the allergy was known to be resolved (and will generally be absent) -->
+									</effectiveTime>
+									<value xsi:type="CD" code="419511003"
+										displayName="Propensity to adverse reaction to drug"
+										codeSystem="2.16.840.1.113883.6.96"
+										codeSystemName="SNOMED CT">
+									</value>
+									<author>
+										<templateId root="2.16.840.1.113883.10.20.22.4.119" />
+        								<time value="202006221100-0500" />
+        								<assignedAuthor>
+            								<id extension="111111" root="2.16.840.1.113883.4.6"/>
+            								<assignedPerson>
+									            <name>
+									            	<prefix>Dr</prefix>
+									                <given>Henry</given>
+									                <family>Seven</family>
+									            </name>
+        									</assignedPerson>
+											<representedOrganization>
+									            <id root="2.16.840.1.113883.19.5" />
+									            <name>Community Heatlh Hospitals</name>
+									        </representedOrganization>
+        								</assignedAuthor>
+    								</author>
+									<participant typeCode="CSM">
+										<participantRole classCode="MANU">
+											<playingEntity classCode="MMAT">
+												<code code="16047007"
+												displayName="Product containing benzodiazepine"
+												codeSystem="2.16.840.1.113883.6.96"
+												codeSystemName="SNOMED CT">
+												<originalText>
+												<reference value="#product1"/>
+												</originalText>
+												</code>
+											</playingEntity>
+										</participantRole>
+									</participant>								
+									<entryRelationship typeCode="MFST" inversionInd="true">
+										<observation classCode="OBS" moodCode="EVN">
+											<!-- ** Reaction Observation (V2) ** -->
+											<templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
+											<templateId root="2.16.840.1.113883.10.20.22.4.9"/>
+											<id root="4adc1020-7b14-11db-9fe1-0800200c9a67"/>
+											<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+											<text>
+												<reference value="#reaction1"/>
+											</text>
+											<statusCode code="completed"/>
+											
+											<value xsi:type="CD" code="4448006"
+												codeSystem="2.16.840.1.113883.6.96"
+												displayName="Allergic Headache"/>
+											<entryRelationship typeCode="SUBJ" inversionInd="true">
+												<observation classCode="OBS" moodCode="EVN">
+													<!-- ** Severity Observation  (V2)** -->
+													<!-- When the Severity Observation is associated directly with an allergy it characterizes the allergy. 
+								When the Severity Observation is associated with a Reaction Observation it characterizes a Reaction. -->
+													<templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
+													<templateId root="2.16.840.1.113883.10.20.22.4.8"/>
+													<code code="SEV" displayName="Severity Observation" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
+													<text>
+														<reference value="#severity1"/>
+													</text>
+													<statusCode code="completed"/>
+													<value xsi:type="CD" code="255604002"
+														displayName="Mild"
+														codeSystem="2.16.840.1.113883.6.96"
+														codeSystemName="SNOMED-CT"/>
+												</observation>
+											</entryRelationship>
+										</observation>
+									</entryRelationship>
+								</observation>
+							</entryRelationship>
+						</act>
+					</entry>
+							
 				</section>
 			</component>
 			
@@ -799,6 +907,8 @@
 							<!-- removed participant as not required by test data -db -->
 						</procedure>
 					</entry>
+					
+					
 				</section>
 			</component>
 			
@@ -1106,6 +1216,64 @@
 						</observation>
 					</entry>
 					
+						<!--  SDOH Assessment USCDI v2 -->
+					<entry typeCode="DRIV">
+						<observation classCode="OBS" moodCode="EVN">
+							<!-- ** Gender Identity** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.38"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.38" extension="2015-08-01"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.38" extension="2022-06-01"/>
+							<id root="45efb604-7049-4a2e-ad33-d38556c7636c"/>
+							<code code="160476009" codeSystem="2.16.840.1.113883.6.96"
+								codeSystemName="SNOMEDCT" displayName="Social / personal history observable (observable entity)">
+								<translation code="8689-2" codeSystem="2.16.840.1.113883.6.1"
+									codeSystemName="LOINC" displayName="History of Social function"/> 
+							</code>
+							<statusCode code="completed"/>
+							<effectiveTime value="20150722"/>
+							<entryRelationship typeCode="SPRT">
+								<observation classCode="OBS" moodCode="EVN">
+								<templateId root="2.16.840.1.113883.10.20.22.4.69" extension="2022-06-01"/> <id root="c6b5a04b-2bf4-49d1-8336-636a3813df0b"/>
+								<code code="88121-9" displayName="Hunger Vital Signs"
+								codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/> <derivationExpr>Text description of the calculation</derivationExpr>
+								<statusCode code="completed"/> 
+								<effectiveTime value="20150722"/>
+								<!-- Summed score of the component values --> 
+								<value xsi:type="INT" value="2"/> 
+									<entryRelationship typeCode="COMP">
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.10.20.22.4.86"/>
+											<id root="f4dce790-8328-11db-9fe1-0800200c9a44"/>
+											<code code="88122-7" displayName="(I/We) worried whether (my/our) food
+											would run out before (I/we) got money to buy more"
+											codeSystem="2.16.840.1.113883.6.1"
+											codeSystemName="SNOMED"/>
+											<statusCode code="completed"/>
+											<effectiveTime value="20150722"/>
+											<value xsi:type="CD" code="LA28397-0" displayName="Often true" codeSystem="2.16.840.1.113883.6.1">
+											</value> 
+										</observation>
+									</entryRelationship> 
+									<entryRelationship typeCode="COMP">
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.10.20.22.4.86"/>
+											<id root="f4dce790-8328-11db-9fe1-0800200c9a44"/>
+											<code code="88123-5" displayName="Within the past 12Mo the food we bought
+											just didn't last and we didn't have money to get more"
+											codeSystem="2.16.840.1.113883.6.1"
+											codeSystemName="SNOMED"/>
+											<statusCode code="completed"/>
+											<effectiveTime value="20150722"/>
+											<value xsi:type="CD" code="LA28397-0" displayName="Often true" codeSystem="2.16.840.1.113883.6.1">
+											</value> 
+										</observation>
+									</entryRelationship>
+								</observation>
+							</entryRelationship>	
+						</observation>
+					</entry>
+					
+					
 				</section>
 			</component>	
 
@@ -1284,7 +1452,21 @@
 							</manufacturedProduct>
 						  </consumable>
 						</substanceAdministration>
-					</entry>					
+					</entry>				
+					
+					<!--  SDOH Intervention USCDI v2-->
+					<entry>
+						<procedure moodCode="RQO" classCode="PROC">
+							<!-- **Planned Procedure template ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.41" />
+							<templateId root="2.16.840.1.113883.10.20.22.4.41" extension="2014-06-09" /> <templateId root="2.16.840.1.113883.10.20.22.4.41" extension="2022-06-01" /> <!-- **Planned Procedure template ** -->
+							<id root="9a6d1bac-17d3-4195-89c4-1121bc809b5a" />
+							<code code="467771000124109" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED
+							CT" displayName="Assistance with application for food pantry program" /> 
+							<statusCode code="active" />
+							<effectiveTime value="20150723" />
+						</procedure>
+					</entry>		
 				</section>
 			</component>
 
@@ -1298,12 +1480,52 @@
             -->
 			<!-- edited as per test doc -db -->			
 			<component>
-				<section nullFlavor="NI">
+				<section>
 					<!-- Goals Section -->
+					<!-- -->
 					<templateId root="2.16.840.1.113883.10.20.22.2.60"/>
 					<code code="61146-7" displayName="Goals" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
 					<title>Goals Section</title>
-					<text>No goal information</text>
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Goal</th>
+									<th>Value</th>
+									<th>Date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- the following two do not need to be coded in entries -->
+								<tr>
+									<td>Achieve Food Security with appropriate help </td>
+									<td>N/A</td>
+									<td>July 22, 2015</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					
+					<!--  SDOH Goal Observation USCDI v2 -->
+					<entry>
+						<observation classCode="OBS" moodCode="GOL">
+							<templateId root="2.16.840.1.113883.10.20.22.4.121" />
+							<templateId root="2.16.840.1.113883.10.20.22.4.121" extension="2022-06-01"/>
+							<id extension="3241"
+							root="1.2.840.114350.1.13.6289.1.7.2.737179"/> 
+							<code code="8689-2" displayName="History of Social function"
+							codeSystem="2.16.840.1.113883.5.61" >
+							</code>
+							<statusCode code="active"/> 
+							<effectiveTime>
+							<!-- The effectiveTime/low indicates the desired "Achieve by" date -->
+							<low value="20150722"/>
+							<high nullFlavor="NI"/>
+							</effectiveTime> 
+							<value xsi:type="CD" code="1078229009" displayName="Food security (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+						</observation>
+					</entry>
+					<!-- removed Negotiated Goal for Body Temperature entry as no longer in test data -db -->					
 				</section>
 			</component>
 			
@@ -1327,7 +1549,7 @@
 						codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
 					<title>Health Concerns</title>
 					<!--Including ID at text element is allowed -->
-					<text ID="HealthConcern_1">No Known Health Concerns on 07/22/2015</text>
+					<text ID="HealthConcern_1">Known Health Concerns on 07/22/2015</text>
 					<entry typeCode="COMP">
 						<!-- negationInd=true indicates no known health concerns at the stated time-->
 						<act classCode="ACT" moodCode="EVN" negationInd="true">
@@ -1347,6 +1569,39 @@
 							<!-- Time at which THIS “concern” began being tracked.-->
 						</act>
 					</entry>
+					
+						<!-- SDOH Health Concern USCDI v2 -->
+					<entry>
+						<!-- Health Concerns Act (V2) (V1 was added as a NEW template in R2.0, V2 was updated in R2.1) -db -->
+						<act classCode="ACT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.132"/> 
+							<templateId root="2.16.840.1.113883.10.20.22.4.132" extension="2015-08-01"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.132" extension="2022-06-01"/>
+							<id root="1.3.6.1.4.1.22812.4.222.334.4.32" extension="1148128"/> 
+							<code code="75310-3" displayName="Health Concern"
+								codeSystem="2.16.840.1.113883.6.1" codeSystemName="SNOMED-CT"/> 
+							<statusCode code="active"/>
+							<entryRelationship typeCode="REFR">
+								<observation classCode="OBS" moodCode="EVN"> 
+									<templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-01"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.4"/> 
+									<id extension="1148128" root="1.3.6.1.4.1.22812.4.222.334.4.1.2.1"/> 
+									<code code="404684003"
+										displayName="Clinical Finding (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+										<translation code="75321-0" displayName="Clinical Finding" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+									</code>
+									<statusCode code="completed"/> 
+									<effectiveTime xsi:type="IVL_TS">
+										<low value="20150722"/>
+									</effectiveTime>
+									<value xsi:type="CD" code="733423003"
+									displayName="Food insecurity (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+									</value>
+								</observation> 
+							</entryRelationship>
+						</act>
+					</entry>
+					
 				</section>
 			</component>		
 			
@@ -1414,6 +1669,147 @@
 					<text>No Functional Status information</text>
 				</section>
 			</component>
+		
+		<!-- USCDI v2 Care Team Section -->
+
+        <component>
+            <section>
+                <templateId root="2.16.840.1.113883.10.20.22.2.500" extension="2019-07-01"/>
+                <code code="85847-2" displayName="Care Team Section"
+                    codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                <title> Care Team section</title>
+                <text>
+                    <table>
+                        <colgroup>
+                            <col width="75%"/>
+                            <col width="10%"/>
+                            <col width="15%"/>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>Performer Name</th>
+                                <th>Performer Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td ID="ctm_1">Dr Henry seven </td>
+                                <td>Physician</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </text>
+                <!-- Care Team Organizer entry -->
+                <entry>
+                    <organizer classCode="CLUSTER" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.10.20.22.4.500" extension="2019-07-01"/>
+                        <id root="15C1B550-00D6-11E6-B041-0050568B0101"/>
+                        <code code="86744-0" displayName="Care Team"
+                            codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC">
+                            <originalText><reference value="#ctm_1"></reference></originalText>
+                        </code>
+                        <statusCode code="active"/>
+                        <effectiveTime>
+                        			<low value="20150722"/>
+                        </effectiveTime>
+                        <component>
+                        	<act classCode="PCPR" moodCode="EVN">
+                        		<templateId root="2.16.840.1.113883.10.20.22.4.500.1" extension="2019-07-01"/>
+                        		<id root="15C1B550-00D6-11E6-B041-0050568B1101"/>
+                        		<code code="85847-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Care Team Information"/>
+                        		<statusCode code="active"/>
+                        		<effectiveTime>
+                        			<low value="20150601"/>
+                        		</effectiveTime>
+                        		<performer typeCode="PRF">
+                        			<functionCode xmlns="urn:hl7-org:sdtc" code="PCP" displayName="primary care physician"
+										codeSystem="2.16.840.1.113883.5.88" codeSystemName="ParticipationFunction">	
+									</functionCode>
+									<assignedEntity>
+											<id root="B00B14E8-CDE4-48EA-8A09-01BC4945122A" extension="1"/>
+											<assignedPerson>
+												<name>
+													<given>Henry</given>
+													<family>Seven</family>
+												</name>
+											</assignedPerson>
+									</assignedEntity>	
+
+                        		</performer>
+                        	</act>
+                        </component>
+                    </organizer>
+                </entry>
+            </section>
+        </component>
+        
+        <!-- USCDI v1 Notes -->
+        <component>
+            <section>
+                <templateId root="2.16.840.1.113883.10.20.22.2.65" extension="2016-11-01"/>
+                <id root="15C1B550-00D6-11E6-B041-0050568B0001"/>
+                <code code="11488-4" displayName="Consultation Note"
+                    codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                <title> Notes section</title>
+                <text>
+                    <table>
+                        <colgroup>
+                            <col width="75%"/>
+                            <col width="10%"/>
+                            <col width="15%"/>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>Summary</th>
+                                <th>Written by:</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td ID="ConsultationNote_1">Dr Henry Seven diagnosed Mr Jeremy Wong to be suffering from first degree burns, but provided the necessary care and discharged Mr Wong letting him know that it would heal in time and he can go home. </td>
+                                <td>Dr Henry Seven</td>
+                                <td>07/22/2020</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </text>
+                <!-- Note Activity entry -->
+                <entry>
+                    <act classCode="ACT" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.10.20.22.4.202" extension="2016-11-01"/>
+                        <code code="34109-9" displayName="Note"
+                            codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC">
+                            <translation code="11488-4" displayName="Consultation Note"
+                                codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"></translation>
+                        </code>
+                        <text>
+                            <reference value="#ConsultationNote_1"></reference>
+                        </text>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20200722"></effectiveTime>
+                        <author>
+                            <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+		        								<time value="202006221100-0500" />
+		        								<assignedAuthor>
+		            								<id extension="111111" root="2.16.840.1.113883.4.6"/>
+		            								<assignedPerson>
+											            <name>
+											            	<prefix>Dr</prefix>
+											                <given>Henry</given>
+											                <family>Seven</family>
+											            </name>
+		        									</assignedPerson>
+													<representedOrganization>
+											            <id root="2.16.840.1.113883.19.5" />
+											            <name>Community Health Hospitals</name>
+											        </representedOrganization>
+		        								</assignedAuthor>
+                        </author>
+                    </act>
+                </entry>
+            </section>
+        </component>
 		
 		</structuredBody>
 	</component>

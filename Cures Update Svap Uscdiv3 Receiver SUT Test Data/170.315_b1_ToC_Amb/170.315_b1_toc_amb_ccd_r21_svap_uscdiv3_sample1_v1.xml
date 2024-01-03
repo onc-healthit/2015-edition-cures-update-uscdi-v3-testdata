@@ -781,6 +781,7 @@
 							</tbody>
 						</table>
 					</text>
+					
 					<entry typeCode="DRIV">
 						<substanceAdministration classCode="SBADM" moodCode="EVN">
 							<!-- ** Medication Activity (V2) ** -->
@@ -811,8 +812,39 @@
 									</manufacturedMaterial>
 								</manufacturedProduct>
 							</consumable>
-							<!-- removed participant, performer, and, removed entryRelationships Indication (V2), Medication supply order (V2), and Medication dispense (v2) as not required -db -->
-							<!-- removed precondition as not required -db -->
+							<entryRelationship typeCode="RSON" inversionInd="true">
+								<observation classCode="OBS" moodCode="EVN">
+								<templateId root="2.16.840.1.113883.10.20.22.4.19"/>
+								<templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09" />
+								<!-- Note that this id equals the problem observation/id -->
+								<id root="db734647-fc99-424c-a864-7e3cda82e703" />
+								<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4" />
+								<statusCode code="completed" />
+								<value xsi:type="CD" code="386661006" displayName="Fever (finding)" codeSystem="2.16.840.1.113883.6.96" />
+								</observation>
+							</entryRelationship>
+							<entryRelationship typeCode="REFR">
+								<supply classCode="SPLY" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.18"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.18" extension="2014-06-09" />
+									<id root="1.2.3.4.56789.1" extension="cb734647-fc99-424c-a864-7e3cda82e704" />
+									<statusCode code="completed" />
+									<effectiveTime value="201506221800-0800" />
+									<repeatNumber value="2" />
+									<quantity value="6" />
+									<product>
+										<manufacturedProduct classCode="MANU">
+											<!-- ** Medication information ** -->
+											<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+											<templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+											<id root="2a620155-9d11-439e-92b3-5d9815ff4ee8"/>
+											<manufacturedMaterial>
+												<code code="309090" codeSystem="2.16.840.1.113883.6.88" displayName="Ceftriaxone 100MG/ML"/>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+									</product>
+								</supply>
+							</entryRelationship>
 						</substanceAdministration>
 					</entry>
 					<entry typeCode="DRIV">
@@ -845,10 +877,20 @@
 									</manufacturedMaterial>
 								</manufacturedProduct>
 							</consumable>
-							<!-- removed Indication (V2) entryRelatioship as not required.
-							if included would probably be fever	-db -->
+							<entryRelationship typeCode="RSON" inversionInd="true">
+								<observation classCode="OBS" moodCode="EVN">
+								<templateId root="2.16.840.1.113883.10.20.22.4.19"/>
+								<templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09" />
+								<!-- Note that this id equals the problem observation/id -->
+								<id root="db734647-fc99-424c-a864-7e3cda82e703" />
+								<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4" />
+								<statusCode code="completed" />
+								<value xsi:type="CD" code="386661006" displayName="Fever (finding)" codeSystem="2.16.840.1.113883.6.96" />
+								</observation>
+							</entryRelationship>
 						</substanceAdministration>
 					</entry>
+					
 					<entry typeCode="DRIV">
 						<substanceAdministration classCode="SBADM" moodCode="EVN">
 							<!-- ** Medication Activity (V2) ** -->
@@ -1601,6 +1643,16 @@
 							</thead>
 							<tbody>
 								<tr>
+									<td>Gender Identity</td>
+									<td>Asked but Unknown</td>
+									<td>Unknown</td>
+								</tr>
+								<tr>
+									<td>Sexual Orientation</td>
+									<td>Unknown</td>
+									<td>Unknown</td>
+								</tr>
+								<tr>
 									<td>Smoking Status</td>
 									<td>Heavy tobacco smoker</td>
 									<td>May 1, 2005 - February 27, 2011</td>
@@ -1615,9 +1667,131 @@
 									<td>Female</td>
 									<td>June 22, 2015</td>
 								</tr>
+								
+								<tr>
+									<td>Basic Occupation</td>
+									<td>Odd Jobs Day Worker</td>
+									<td>June 22, 2015</td>
+								</tr>
+								<tr>
+									<td>Tribal Affiliation</td>
+									<td>Coquille Indian Tribe</td>
+									<td>June 22, 2015</td>
+								</tr>
+								<tr>
+									<td>Pregnancy Status</td>
+									<td>Not Pregnant</td>
+									<td>June 22, 2015</td>
+								</tr>
 							</tbody>
 						</table>
 					</text>
+
+					<!-- Basic Occupation and Basic Industry Occupation -->
+					<entry>
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.503" extension="2023-05-01"/>
+							<id root="f4dce790-8328-11db-9fe1-0800200c9a45"/>
+							<code code="11341-5" codeSystem="2.16.840.1.113883.6.1"
+							codeSystemName="LOINC" displayName="History of occupation"/>
+							<statusCode code="completed"/>
+							<effectiveTime>
+							<!-- SHALL low/value. The low value reflects the start date of the stated occupation -->
+							<low value="20220615"/>
+							</effectiveTime>
+							<value xsi:type="CD" code="37-2011.00.028742"
+							displayName="Odd Jobs Day Worker [Janitors and Cleaners, Except Maids and Housekeeping"
+							codeSystem="2.16.840.1.114222.4.5.327"
+							codeSystemName="Occupational Data for Health (ODH)"/>
+							<entryRelationship typeCode="REFR">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.504"
+									extension="2023-05-01"/>
+									<id root="f4dce790-8328-11db-9fe1-0800200c9a47"/>
+									<code code="86188-0" codeSystem="2.16.840.1.113883.6.1"
+									codeSystemName="LOINC" displayName="History of occupation industry"/>
+									<statusCode code="completed"/>
+									<effectiveTime>
+									<!-- SHALL low/value. The low value reflects the start date of the stated industry -->
+									<low value="20220615"/>
+									<!-- MAY high/value. The high value reflects the end date of the stated industry.
+									An absent high value means the industry is/was current at the time the document was generated -->
+									<high value="20220615"/>
+									</effectiveTime>
+									<value xsi:type="CD" code="561720.002294"
+									displayName="Building cleaning services, interior [Janitorial Services"
+									codeSystem="2.16.840.1.114222.4.5.327"
+									codeSystemName="Occupational Data for Health (ODH)"/>
+								</observation>
+							</entryRelationship>
+						</observation>
+					</entry>
+
+					<!-- Tribal Affiliation -->
+					<entry>
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.506" extension="2023-05-01"/>
+							<id root="c6b5a04b-2bf4-49d1-8336-636a3813df0bc"/>
+							<code code="95370-3" codeSystem="2.16.840.1.113883.6.1"
+							codeSystemName="LOINC" displayName="Tribal affiliation"/>
+							<statusCode code="completed"/>
+							<!-- The effectiveTime reflects when the current tribal affiliation status was observed. -->
+							<effectiveTime value="20220615"/>
+							<value xsi:type="CD" code="65"
+							displayName="Coquille Indian Tribe"
+							codeSystem="2.16.840.1.113883.5.140" codeSystemName="TribalEntityUS"/>
+						</observation>
+					</entry>
+
+					<!-- Pregnancy Status -->
+					<entry>
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.15.3.8"/>
+							<id extension="123456789" root="2.16.840.1.113883.19"/>
+							<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+							<statusCode code="completed"/>
+							<effectiveTime>
+							<low value="20220615"/>
+							</effectiveTime>
+							<value xsi:type="CD" code="60001007"
+							displayName="Not Pregnant"
+							codeSystem="2.16.840.1.113883.6.96"/>
+						</observation>
+					</entry>
+					
+					<entry typeCode="DRIV">
+						<observation classCode="OBS" moodCode="EVN">
+							<!-- ** Gender Identity** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.38"/>
+							<templateId root="2.16.840.1.113883.10.20.34.3.45" extension="2022-06-01" />
+							<id root="45efb604-7049-4a2e-ad33-d38556c7636c"/>
+							
+							<code code="76691-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Gender Identity"/>
+							<statusCode code="completed"/>
+							<effectiveTime nullFlavor="NI">
+								
+							</effectiveTime>
+							<value xsi:type="CD" nullFlavor="ASKU"/>
+						</observation>
+					</entry>
+
+					<entry typeCode="DRIV">
+						<observation classCode="OBS" moodCode="EVN">
+							<!-- ** Sexual Orientation ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.38"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.501" extension="2022-06-01"/>
+							
+							<id root="45efb604-7049-4a2e-ad33-d38557c7636c"/>
+							<!-- code SHALL be 11367-0 for Tobacco use (V2) -db -->
+							<code code="76690-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Sexual Orientation"/>
+							<statusCode code="completed"/>
+							<effectiveTime nullFlavor="NI">
+								
+							</effectiveTime>
+							<value xsi:type="CD" nullFlavor="UNK"/>
+						</observation>
+					</entry>
+							
 					<!-- Smoking Status - May 1, 2005 - February 27, 2011 -db -->
 					<entry typeCode="DRIV">
 						<observation classCode="OBS" moodCode="EVN">
@@ -2168,6 +2342,10 @@
 									<td ID="FUNC1">Dependence on Cane</td>
 									<td>May 01, 2005</td>
 								</tr>
+								<tr>
+									<td ID="FUNC2">Do you have serious difficulty walking or climbing stairs - Yes</td>
+									<td>June 22, 2015</td>
+								</tr>
 							</tbody>
 						</table>
 					</text>
@@ -2194,10 +2372,9 @@
 									</text>
 									<statusCode code="completed"/>
 									<effectiveTime value="20050501"/>
-									<value xsi:type="CD" code="105504002" displayName="Dependence on Cane" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT"/>
+									<value xsi:type="CD" code="105504002" displayName="Dependence on Cane" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
 								</observation>
 							</component>
-							<!-- required as per Functional Status Organizer2 - not relevant to test data -->
 							<component>
 								<observation classCode="OBS" moodCode="EVN">
 									<!-- Self-Care Activities (ADL and IADL) -->
@@ -2208,8 +2385,40 @@
 									<effectiveTime value="20050501"/>
 									<value xsi:type="CD" code="371153006" displayName="Independent" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT"/>
 								</observation>
-							</component>							
+							</component>						
 						</organizer>
+					</entry>
+					<entry>
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.505"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.505"
+							extension="2023-05-01"/>
+							<code code="89571-4" displayName="Disability Status [CUBS]"
+							codeSystem="2.16.840.1.113883.6.1"/>
+							<statusCode code="completed"/>
+							<effectiveTime value="20220615"/>
+							<!-- From LOINC Answer Set associated with Disability Status [CUBS] -->
+							<value xsi:type="CD" code="LA29243-5"
+							displayName="I'm Vulnerable - I sometimes or periodically have acute or chronic symptoms affecting housing, employment, social interactions, etc."
+							codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+							<!-- May contain an Assessment Scale template With Assessment Scale observation containing the disability related questions -->
+							<entryRelationship typeCode="COMP">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.69"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.69" extension="2022-06-01"/>
+									<id root="c6b5a04b-2bf4-49d1-8336-636a3813df0b"/>
+									<code code="69859-7"
+									displayName="Do you have serious difficulty walking or climbing stairs"
+									codeSystem="2.16.840.1.113883.6.1"
+									codeSystemName="LOINC"/>
+									<statusCode code="completed"/>
+									<effectiveTime value="20120214"/>
+									<value xsi:type="CD" code="LA33-6"
+										displayName="Yes"
+										codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+									</observation>
+							</entryRelationship>
+						</observation>
 					</entry>
 				</section>
 			</component>
@@ -2765,9 +2974,31 @@
 					<templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.1"/>
 					<code code="42349-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Reason for Referral"/>
 					<title>REASON FOR REFERRAL</title>
-					<text>Ms Kathy Madison is being referred to Community Health Hospitals Inpatient facility because of the high fever noticed and suspected Anemia.</text>
+					<text>Ms Alice Newman is being referred to Community Health Hospitals Inpatient facility because of the high fever noticed and suspected Anemia.</text>
+					<entry>
+						<act classCode="PCPR" moodCode="INT">
+						<!--Patient Referral Act-->
+							<templateId root="2.16.840.1.113883.10.20.22.4.140" />
+							<id root="70bdd7db-e02d-4eff-9829-35e3b7d9e154" />
+							<code code="310449005" displayName="Patient referral to hospital" codeSystemName="SNOMED-CT" codeSystem="2.16.840.1.113883.6.96" />
+							<statusCode code="active" />
+							<effectiveTime value="20220615" />
+							<entryRelationship typeCode="RSON">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.19"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09" />
+									<!-- Note that this id equals the problem observation/id -->
+									<id root="db734647-fc99-424c-a864-7e3cda82e703" />
+									<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4" />
+									<statusCode code="completed" />
+									<value xsi:type="CD" code="386661006" displayName="Fever" codeSystem="2.16.840.1.113883.6.96" />
+								</observation>
+							</entryRelationship>
+						</act>
+					</entry>
 				</section>
 			</component>
+			
 
 			<!-- added Mental Status Section (V2) (used to be NEW in R2.0) 2.16.840.1.113883.10.20.22.2.56 as required by latest ToC test data -db -->
 			<!-- 
@@ -2969,6 +3200,127 @@
                 </entry>
             </section>
         </component>
+        
+        <!--  Payers section -->
+       <component>
+    		<section>
+    				<templateId root="2.16.840.1.113883.10.20.22.2.18"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.18" extension="2015-08-01" />
+					<!-- ******** Payers section template ******** -->
+					<code code="48768-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Payers" />
+					<title>Insurance Providers</title>
+					<text>Health Insurance Information</text>
+					<entry typeCode="DRIV">
+						<act classCode="ACT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.60"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.60" extension="2015-08-01" />
+							<id root="1fe2cdd0-7aad-11db-9fe1-0800200c9a66" />
+							<code code="48768-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Payment sources" />
+							<statusCode code="completed" />
+							<effectiveTime value="20150101"/>
+							<entryRelationship typeCode="COMP">
+								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.61"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.61" extension="2015-08-01" />
+									<id root="2.16.840.1.113883.19" extension="Acme Gold Plan" />
+									<code code="PR"
+									codeSystemName="Insurance Type Code"
+									codeSystem="2.16.840.1.113883.6.255.1336">
+										<translation code="72" displayName="PPO"
+										codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="Source of Payment Typology (PHDSC)"></translation>
+									</code>
+									<statusCode code="completed" />
+									<!-- Payer -->
+									<performer typeCode="PRF">
+										<templateId root="2.16.840.1.113883.10.20.22.4.87" />
+										<time>
+										<low nullFlavor="UNK" />
+										<high nullFlavor="UNK" />
+										</time>
+										<assignedEntity>
+											<id root="2.16.840.1.113883.19" />
+											<code code="PAYOR" codeSystem="2.16.840.1.113883.5.110" codeSystemName="HL7 RoleCode" />
+											<addr use="WP">
+												<streetAddressLine>123 Insurance Road</streetAddressLine>
+												<city>Blue Bell</city>
+												<state>MA</state>
+												<postalCode>02368</postalCode>
+												<country>US</country>
+											</addr>
+											<telecom value="tel:+(555)555-1515" use="WP" />
+											<representedOrganization>
+												<name>Example Payer Organization</name>
+												<telecom value="tel:+(555)555-1515" use="WP" />
+												<addr use="WP">
+													<streetAddressLine>123 Insurance Road</streetAddressLine>
+													<city>Blue Bell</city>
+													<state>MA</state>
+													<postalCode>02368</postalCode>
+													<country>US</country>
+												</addr>
+											</representedOrganization>
+										</assignedEntity>
+									</performer>
+									<!-- Covered party -->
+									<participant typeCode="COV">
+										<templateId root="2.16.840.1.113883.10.20.22.4.89" />
+										<time>
+											<low nullFlavor="UNK" />
+											<high nullFlavor="UNK" />
+										</time>
+										<participantRole classCode="PAT">
+										<!-- Health plan ID for patient. -->
+											<id root="1.1.1.1.1.1.1.1.14" extension="88800933502" />
+											<code code="FAMDEP" codeSystem="2.16.840.1.113883.5.111" />
+											<addr use="HP">
+												<!-- HP is "primary home" from codeSystem 2.16.840.1.113883.5.1119 -->
+												<streetAddressLine>1357 Amber Dr</streetAddressLine>
+												<city>Beaverton</city>
+												<state>OR</state>
+												<postalCode>97006</postalCode>
+												<country>US</country>
+												<!-- US is "United States" from ISO 3166-1 Country Codes: 1.0.3166.1 -->
+											</addr>
+											<playingEntity>
+												<name>
+												<!-- Name is needed if different than name on health plan. -->
+													<given>Alice</given>
+													<family>Newman</family>
+												</name>
+												<sdtc:birthTime value="19700501"/>
+											</playingEntity>
+										</participantRole>
+									</participant>
+									<!-- Policy holder -->
+									<participant typeCode="HLD">
+										<templateId root="2.16.840.1.113883.10.20.22.4.90" />
+										<participantRole>
+											<id extension="888009335" root="2.16.840.1.113883.19" />
+											<addr use="HP">
+												<!-- HP is "primary home" from codeSystem 2.16.840.1.113883.5.1119 -->
+												<streetAddressLine>1357 Amber Dr</streetAddressLine>
+												<city>Beaverton</city>
+												<state>OR</state>
+												<postalCode>97006</postalCode>
+												<country>US</country>
+												<!-- US is "United States" from ISO 3166-1 Country Codes: 1.0.3166.1 -->
+											</addr>
+										</participantRole>
+									</participant>
+									<entryRelationship typeCode="REFR">
+										<act classCode="ACT" moodCode="DEF">
+											<id root="1.1.1.1.1.1.1.1.14"/>
+											<code nullFlavor="NI"/>
+											<text>Acme Gold Plan</text>
+										</act>
+									</entryRelationship>
+									
+								</act>
+							</entryRelationship>
+						</act>
+					</entry>
+			</section>
+    	</component>
 			
 		
 		</structuredBody>

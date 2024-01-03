@@ -401,65 +401,32 @@
 					<!-- Alerts section template -->
 					<code code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
 					<title>ALLERGIES AND ADVERSE REACTIONS</title>
-					<text>Allergies</text>
-					<!-- replaced Allergy Problem Act (R1.1) with 
-					Allergy Concern Act (V3) to meet R2.1 validation requirements -DB-->
-					<entry typeCode="DRIV">
-						<act classCode="ACT" moodCode="EVN">
-							<!-- ** Allergy Concern Act (V3) ** -->
-							<templateId root="2.16.840.1.113883.10.20.22.4.30" extension="2015-08-01"/>
-							<!--Critical Change-->
-							<templateId root="2.16.840.1.113883.10.20.22.4.30"/>
-							<id root="36e3e930-7b15-11db-9fe1-0831200c9a66"/>
-							<code code="CONC" codeSystem="2.16.840.1.113883.5.6"/>
-							<!-- The statusCode represents the need to continue tracking the allergy -->
-							<!-- This is of ongoing concern to the provider -->
-							<statusCode code="active"/>
-							<effectiveTime>
-								<!-- The low value represents when the allergy was first recorded in the patient's chart -->
-								<low value="20150722"/>
-							</effectiveTime>
-							<entryRelationship typeCode="SUBJ">
-								<!-- using negationInd="true" to signify that there are is NO food allergy (disorder) allergy -db -->
-								<observation classCode="OBS" moodCode="EVN" negationInd="true">
-									<!-- ** Allergy observation (V2) ** -->
-									<templateId root="2.16.840.1.113883.10.20.22.4.7" extension="2014-06-09"/>
-									<templateId root="2.16.840.1.113883.10.20.22.4.7"/>
-									<id root="4adc1020-7b16-11db-9fe1-0832200c9a66"/>
-									<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
-									<statusCode code="completed"/>
-									<effectiveTime nullFlavor="NA"/>
-									<!-- We cannot use the No known Food Allergy value/@code 429625007 
-									required by the test data as it is not part of the valueSet required 
-									(Allergy/Adverse Event Type 2.16.840.1.113883.3.88.12.3221.6.2 DYNAMIC CONF:1098-7390 -db -->
-									<!--
-									<value xsi:type="CD" code="429625007"
-										displayName="No known Food Allergy"
-										codeSystem="2.16.840.1.113883.6.96"
-										codeSystemName="SNOMED-CT">
-										<originalText>
-											<reference value="#reaction1"/>
-										</originalText>
-									</value>
-									-->
-									<!-- using Food allergy (disorder) along with negationInd instead -db -->
-									<value xsi:type="CD" code="419199007"
-										displayName="Allergy to substance (disorder)"
-										codeSystem="2.16.840.1.113883.6.96"
-										codeSystemName="SNOMED-CT">
-									</value>
-									<!-- In C-CDA R2 the participant is required. The SNOMED code ="105590001" displayName="Substance" could be used in the participant-->									
-									<participant typeCode="CSM">
-										<participantRole classCode="MANU">
-											<playingEntity classCode="MMAT">
-												<code nullFlavor="NA"/>
-											</playingEntity>
-										</participantRole>
-									</participant>
-								</observation>
-							</entryRelationship>
-						</act>
-					</entry>			
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Substance</th>
+									<th>Reaction</th>
+									<th>Severity</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<content ID="product1">Product containing benzodiazepine</content>
+									</td>
+									<td>
+										<content ID="reaction1">Allergic Headache</content>
+									</td>
+									<td>
+										<content ID="severity1">Mild</content>
+									</td>
+									<td>Active</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
 					
 					<!-- USCDI v2 -->
 					<entry typeCode="DRIV">
@@ -572,7 +539,6 @@
 			</component>
 			
 			<!-- ******************************* MEDICATIONS ***************************** -->
-			<!-- edited as per test doc - all data relevant -db -->			
 			<component>
 				<section>
 					<!-- *** Medications Section (entries required) (V2) *** -->
@@ -580,35 +546,365 @@
 					<templateId root="2.16.840.1.113883.10.20.22.2.1.1"/>
 					<code code="10160-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HISTORY OF MEDICATION USE"/>
 					<title>MEDICATIONS</title>
-					<text>No known Medications</text>
-					<entry>
-						<!-- Act.actionNegationInd -->
-						<substanceAdministration moodCode="EVN" classCode="SBADM" negationInd="true">
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Medication</th>
+									<th>Directions</th>
+									<th>Start Date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Ceftriaxone 100MG/ML</td>
+									<td>Two Times Daily</td>
+									<td>June 22, 2015</td>
+								</tr>
+								<tr>
+									<td>Vantin</td>
+									<td>Two Times Daily</td>
+									<td>June 22, 2015</td>
+								</tr>
+								<tr>
+									<td>Tylenol 500mg</td>
+									<td>As needed</td>
+									<td>June 22, 2015</td>
+								</tr>
+								<tr>
+									<td>Clindamycin 300mg</td>
+									<td>Three Times Daily</td>
+									<td>June 23, 2015</td>
+								</tr>
+								<tr>
+									<td>Torsemide 20mg</td>
+									<td>Daily</td>
+									<td>June 23, 2015</td>
+								</tr>
+								<tr>
+									<td>Levothyroxine Sodium</td>
+									<td>Daily</td>
+									<td>June 23, 2015</td>
+								</tr>
+								<tr>
+									<td>Prednisolone 10mg</td>
+									<td>Daily</td>
+									<td>June 23, 2015</td>
+								</tr>
+								<tr>
+									<td>FenoFibric Acid 35mg</td>
+									<td>At the hour o sleep</td>
+									<td>June 24, 2015</td>
+								</tr>
+								<tr>
+									<td>Mycophenolic Acid 360mg</td>
+									<td>Two Times Daily</td>
+									<td>June 24, 2015</td>
+								</tr>
+								<tr>
+									<td>Everolimus 0.5mg</td>
+									<td>Two Times Daily</td>
+									<td>June 24, 2015</td>
+								</tr>
+								<tr>
+									<td>Ciprofloxacin 2mg/ml</td>
+									<td>Three Times Daily</td>
+									<td>June 25, 2015</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry typeCode="DRIV">
+						<substanceAdministration classCode="SBADM" moodCode="EVN">
 							<!-- ** Medication Activity (V2) ** -->
 							<templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
 							<templateId root="2.16.840.1.113883.10.20.22.4.16"/>
-							<id root="cdbd33f0-6cde-11db-9fe1-0833200c9a66"/>
+							<id root="cdbd33f0-6cde-11db-9fe1-0800200c9a66"/>
 							<statusCode code="active"/>
-							<effectiveTime nullFlavor="NA"/>
-							<doseQuantity nullFlavor="NA"/>
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="20150622"/>
+								<high value="20150630"/>
+							</effectiveTime>
+							<effectiveTime xsi:type="PIVL_TS" institutionSpecified="true" operator="A">
+								<period value="12" unit="h"/>
+							</effectiveTime>
+							<routeCode code="C38276" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Thesaurus" displayName="INTRAVENOUS"/>
+							<doseQuantity value="1"/>
+							<!-- we don't need an administrationUnitCode element since we have an exact amount specified for injection
+							nor would any code match if we did:
+							reference: https://art-decor.org/art-decor/decor-valuesets search AdministrableDrugForm -db -->
 							<consumable>
 								<manufacturedProduct classCode="MANU">
 									<!-- ** Medication information ** -->
 									<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
 									<templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+									<id root="2a620155-9d11-439e-92b3-5d9815ff4ee8"/>
 									<manufacturedMaterial>
-										<code nullFlavor="OTH" codeSystem="2.16.840.1.113883.6.88"> 
-											<translation code="410942007" displayName="drug or medication"
-												codeSystem="2.16.840.1.113883.6.96"            
-												codeSystemName="SNOMED-CT"/>
-										</code>
+										<code code="309090" codeSystem="2.16.840.1.113883.6.88" displayName="Ceftriaxone 100MG/ML"/>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+							</consumable>
+							<entryRelationship typeCode="RSON" inversionInd="true">
+								<observation classCode="OBS" moodCode="EVN">
+								<templateId root="2.16.840.1.113883.10.20.22.4.19"/>
+								<templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09" />
+								<!-- Note that this id equals the problem observation/id -->
+								<id root="db734647-fc99-424c-a864-7e3cda82e703" />
+								<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4" />
+								<statusCode code="completed" />
+								<value xsi:type="CD" code="386661006" displayName="Fever (finding)" codeSystem="2.16.840.1.113883.6.96" />
+								</observation>
+							</entryRelationship>
+							<entryRelationship typeCode="REFR">
+								<supply classCode="SPLY" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.18"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.18" extension="2014-06-09" />
+									<id root="1.2.3.4.56789.1" extension="cb734647-fc99-424c-a864-7e3cda82e704" />
+									<statusCode code="completed" />
+									<effectiveTime value="201506221800-0800" />
+									<repeatNumber value="2" />
+									<quantity value="6" />
+									<product>
+										<manufacturedProduct classCode="MANU">
+											<!-- ** Medication information ** -->
+											<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+											<templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+											<id root="2a620155-9d11-439e-92b3-5d9815ff4ee8"/>
+											<manufacturedMaterial>
+												<code code="309090" codeSystem="2.16.840.1.113883.6.88" displayName="Ceftriaxone 100MG/ML"/>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+									</product>
+								</supply>
+							</entryRelationship>
+						</substanceAdministration>
+					</entry>
+					<entry typeCode="DRIV">
+						<substanceAdministration classCode="SBADM" moodCode="EVN">
+							<!-- ** Medication activity (V2) ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+							<id root="6c844c75-aa34-411c-b7bd-5e4a9f206e29"/>
+							<statusCode code="active"/>
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="20150622"/>
+								<high value="20150701"/>
+							</effectiveTime>
+							<!-- InstituionSpecified = "true" means that interval of time for taking need not be exact
+								 In this case it alters every 24 hours to mean PRN / take 'as needed' -db -->
+							<!-- Operator "A" means that this timing information is in addition to previous effectiveTime information provided-->
+							<effectiveTime xsi:type="PIVL_TS" institutionSpecified="true" operator="A">
+								<period value="24" unit="h"/>
+							</effectiveTime>
+							<routeCode code="C38288" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Thesaurus" displayName="ORAL"/>
+							<doseQuantity value="1"/>
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<!-- ** Medication information ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+									<id root="2a620155-9d11-439e-92b3-5d9816ff4ee8"/>
+									<manufacturedMaterial>
+										<code code="209459" displayName="Tylenol 500mg" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm"/>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+							</consumable>
+							<entryRelationship typeCode="RSON" inversionInd="true">
+								<observation classCode="OBS" moodCode="EVN">
+								<templateId root="2.16.840.1.113883.10.20.22.4.19"/>
+								<templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09" />
+								<!-- Note that this id equals the problem observation/id -->
+								<id root="db734647-fc99-424c-a864-7e3cda82e703" />
+								<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4" />
+								<statusCode code="completed" />
+								<value xsi:type="CD" code="386661006" displayName="Fever (finding)" codeSystem="2.16.840.1.113883.6.96" />
+								</observation>
+							</entryRelationship>
+						</substanceAdministration>
+					</entry>					
+					<entry typeCode="DRIV">
+						<substanceAdministration classCode="SBADM" moodCode="EVN">
+							<!-- ** Medication Activity (V2) ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+							<id root="cdbd33f0-6cde-11db-9fe1-0805200c9b99"/>
+							<statusCode code="active"/>
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="20150623"/>
+								<high value="20150630"/>
+							</effectiveTime>
+							<effectiveTime xsi:type="PIVL_TS" institutionSpecified="true" operator="A">
+							<!-- TID (3x per day) -db -->
+								<period value="8" unit="h"/>
+							</effectiveTime>
+							<routeCode code="C38288" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Thesaurus" displayName="ORAL"/>
+							<doseQuantity value="1"/>
+							<consumable>
+							<manufacturedProduct classCode="MANU">
+								<!-- Medication Information (V2) -->
+								<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09" />
+								<templateId root="2.16.840.1.113883.10.20.22.4.23" />
+								<manufacturedMaterial>
+									<code code="284215" codeSystem="2.16.840.1.113883.6.88" displayName="Clindamycin 300mg" codeSystemName="RxNorm"/>
+								</manufacturedMaterial>							  
+							</manufacturedProduct>
+							</consumable>
+						</substanceAdministration>
+					</entry>
+					<entry typeCode="DRIV">
+						<substanceAdministration classCode="SBADM" moodCode="EVN">
+							<!-- ** Medication activity (V2) ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+							<id root="6c844c75-aa34-411c-b7bd-5e4a9f207f42"/>
+							<statusCode code="active"/>
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="20150623"/>
+								<high value="20150630"/>
+							</effectiveTime>
+							<effectiveTime xsi:type="PIVL_TS" institutionSpecified="true" operator="A">
+								<!-- QD / once per day -db -->
+								<period value="24" unit="h"/>
+							</effectiveTime>
+							<routeCode code="C38288" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Thesaurus" displayName="ORAL"/>
+							<doseQuantity value="1"/>
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<!-- ** Medication information ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+									<id root="2a620155-9d11-439e-92b3-5d9826ff4ff8"/>
+									<manufacturedMaterial>
+										<code code="198371" displayName="Torsemide 20mg" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm"/>
 									</manufacturedMaterial>
 								</manufacturedProduct>
 							</consumable>
 						</substanceAdministration>
 					</entry>
+					<entry typeCode="DRIV">
+						<substanceAdministration classCode="SBADM" moodCode="EVN">
+							<!-- ** Medication activity (V2) ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+							<id root="6c844c75-aa34-411c-b7bd-5e4a9f206f44"/>
+							<statusCode code="active"/>
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="20150624"/>
+								<high value="20150704"/>
+							</effectiveTime>
+							 <!-- The second effectiveTime specifies dose frequency, which can be either a period (PIVL_TS) or event (EIVL_TS). -->
+							 <!-- this represents once per day before bedtime, which is an event - represents 'Q.H.S.'-->
+							<effectiveTime xsi:type="EIVL_TS" operator="A">
+								<event code="HS"/>
+							</effectiveTime>
+							<routeCode code="C38288" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Thesaurus" displayName="ORAL"/>
+							<doseQuantity value="1"/>
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<!-- ** Medication information ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+									<id root="2a620155-9d11-439e-92b3-5d9825ff4fg1"/>
+									<manufacturedMaterial>
+										<code code="860886" displayName="FenoFibric Acid 35 mg" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm"/>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+							</consumable>
+						</substanceAdministration>
+					</entry>					
+					<entry typeCode="DRIV">
+						<substanceAdministration classCode="SBADM" moodCode="EVN">
+							<!-- ** Medication activity (V2) ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+							<id root="6c844c75-aa34-411c-b7bd-5e4a9f217f44"/>
+							<statusCode code="active"/>
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="20150624"/>
+								<high value="20150627"/>
+							</effectiveTime>
+							<effectiveTime xsi:type="PIVL_TS" institutionSpecified="true" operator="A">
+							<!-- BID / 2x per day -db -->
+								<period value="12" unit="h"/>
+							</effectiveTime>
+							<routeCode code="C38288" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Thesaurus" displayName="ORAL"/>
+							<doseQuantity value="1"/>
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<!-- ** Medication information ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+									<id root="2a620155-9d11-439e-92b3-5d9827ff4fg1"/>
+									<manufacturedMaterial>
+										<code code="485023" displayName="Mycophenolic Acid 360 mg" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm"/>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+							</consumable>
+						</substanceAdministration>
+					</entry>
+					<entry typeCode="DRIV">
+						<substanceAdministration classCode="SBADM" moodCode="EVN">
+							<!-- ** Medication activity (V2) ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+							<id root="6c844c75-aa34-422c-b7bd-5e4a9f206f44"/>
+							<statusCode code="active"/>
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="20150624"/>
+								<high value="20150720"/>
+							</effectiveTime>							
+							<effectiveTime xsi:type="PIVL_TS" institutionSpecified="true" operator="A">
+							<!-- BID / 2x per day -db -->
+								<period value="12" unit="h"/>
+							</effectiveTime>
+							<routeCode code="C38288" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Thesaurus" displayName="ORAL"/>
+							<doseQuantity value="1"/>
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<!-- ** Medication information ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+									<id root="2a620155-9d11-439e-92b3-5d9828ff4fg1"/>
+									<manufacturedMaterial>
+										<code code="977434" displayName="Everolimus 0.5 mg" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm"/>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+							</consumable>
+						</substanceAdministration>
+					</entry>
+					<entry typeCode="DRIV">
+						<substanceAdministration classCode="SBADM" moodCode="EVN">
+							<!-- ** Medication activity (V2) ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.16" extension="2014-06-09"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.16"/>
+							<id root="6c844c75-aa34-423c-b7bd-5e4a9f206f44"/>
+							<statusCode code="active"/>
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="20150624"/>
+								<high value="20150724"/>
+							</effectiveTime>
+							<effectiveTime xsi:type="PIVL_TS" institutionSpecified="true" operator="A">
+							<!-- TID (3x per day) -db -->
+								<period value="8" unit="h"/>
+							</effectiveTime>	
+							<routeCode code="C38288" codeSystem="2.16.840.1.113883.3.26.1.1" codeSystemName="NCI Thesaurus" displayName="ORAL"/>
+							<doseQuantity value="1"/>
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+									<!-- ** Medication information ** -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.23" extension="2014-06-09"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.23"/>
+									<id root="2a620155-9d11-441e-92b3-5d9815ff4fg1"/>
+									<manufacturedMaterial>
+										<code code="197511" displayName="Ciprofloxacin 2mg/ml" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm"/>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+							</consumable>
+						</substanceAdministration>
+					</entry>					
 				</section>
-			</component>
+			</component>			
+			
 			
 			<!-- *******************************
 			B) Medications Administered during stay
@@ -1181,9 +1477,108 @@
 									<td>Male</td>
 									<td>July 22, 2015</td>
 								</tr>
+								
+								<tr>
+									<td>Gender Identity</td>
+									<td>Asked but Unknown</td>
+									<td>Unknown</td>
+								</tr>
+								<tr>
+									<td>Sexual Orientation</td>
+									<td>Unknown</td>
+									<td>Unknown</td>
+								</tr>
+								<tr>
+									<td>Basic Occupation</td>
+									<td>Odd Jobs Day Worker</td>
+									<td>June 22, 2022</td>
+								</tr>
+								<tr>
+									<td>Tribal Affiliation</td>
+									<td>Coquille Indian Tribe</td>
+									<td>June 22, 2022</td>
+								</tr>
+								<tr>
+									<td>Pregnancy Status</td>
+									<td>Not Pregnant</td>
+									<td>June 22, 2022</td>
+								</tr>
 							</tbody>
 						</table>
-					</text>					
+					</text>
+
+					<!-- Basic Occupation and Basic Industry Occupation -->
+					<entry>
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.503" extension="2023-05-01"/>
+							<id root="f4dce790-8328-11db-9fe1-0800200c9a45"/>
+							<code code="11341-5" codeSystem="2.16.840.1.113883.6.1"
+							codeSystemName="LOINC" displayName="History of occupation"/>
+							<statusCode code="completed"/>
+							<effectiveTime>
+							<!-- SHALL low/value. The low value reflects the start date of the stated occupation -->
+							<low value="20220615"/>
+							</effectiveTime>
+							<value xsi:type="CD" code="37-2011.00.028742"
+							displayName="Odd Jobs Day Worker [Janitors and Cleaners, Except Maids and Housekeeping"
+							codeSystem="2.16.840.1.114222.4.5.327"
+							codeSystemName="Occupational Data for Health (ODH)"/>
+							<entryRelationship typeCode="REFR">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.504"
+									extension="2023-05-01"/>
+									<id root="f4dce790-8328-11db-9fe1-0800200c9a47"/>
+									<code code="86188-0" codeSystem="2.16.840.1.113883.6.1"
+									codeSystemName="LOINC" displayName="History of occupation industry"/>
+									<statusCode code="completed"/>
+									<effectiveTime>
+									<!-- SHALL low/value. The low value reflects the start date of the stated industry -->
+									<low value="20220615"/>
+									<!-- MAY high/value. The high value reflects the end date of the stated industry.
+									An absent high value means the industry is/was current at the time the document was generated -->
+									<high value="20220615"/>
+									</effectiveTime>
+									<value xsi:type="CD" code="561720.002294"
+									displayName="Building cleaning services, interior [Janitorial Services"
+									codeSystem="2.16.840.1.114222.4.5.327"
+									codeSystemName="Occupational Data for Health (ODH)"/>
+								</observation>
+							</entryRelationship>
+						</observation>
+					</entry>
+
+					<!-- Tribal Affiliation -->
+					<entry>
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.506" extension="2023-05-01"/>
+							<id root="c6b5a04b-2bf4-49d1-8336-636a3813df0bc"/>
+							<code code="95370-3" codeSystem="2.16.840.1.113883.6.1"
+							codeSystemName="LOINC" displayName="Tribal affiliation"/>
+							<statusCode code="completed"/>
+							<!-- The effectiveTime reflects when the current tribal affiliation status was observed. -->
+							<effectiveTime value="20220615"/>
+							<value xsi:type="CD" code="65"
+							displayName="Coquille Indian Tribe"
+							codeSystem="2.16.840.1.113883.5.140" codeSystemName="TribalEntityUS"/>
+						</observation>
+					</entry>
+
+					<!-- Pregnancy Status -->
+					<entry>
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.15.3.8"/>
+							<id extension="123456789" root="2.16.840.1.113883.19"/>
+							<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+							<statusCode code="completed"/>
+							<effectiveTime>
+							<low value="20220615"/>
+							</effectiveTime>
+							<value xsi:type="CD" code="60001007"
+							displayName="Not Pregnant"
+							codeSystem="2.16.840.1.113883.6.96"/>
+						</observation>
+					</entry>
+								
 					<!-- Current Smoking Status - July 22, 2015 -db -->
 					<entry typeCode="DRIV">
 						<observation classCode="OBS" moodCode="EVN">
@@ -1273,6 +1668,38 @@
 						</observation>
 					</entry>
 					
+					<!--  Gender Identity> -->
+					<entry typeCode="DRIV">
+						<observation classCode="OBS" moodCode="EVN">
+							<!-- ** Gender Identity** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.38"/>
+							<templateId root="2.16.840.1.113883.10.20.34.3.45" extension="2022-06-01" />
+							<id root="45efb604-7049-4a2e-ad33-d38556c7636c"/>
+							
+							<code code="76691-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Gender Identity"/>
+							<statusCode code="completed"/>
+							<effectiveTime nullFlavor="NI">
+								
+							</effectiveTime>
+							<value xsi:type="CD" nullFlavor="ASKU"/>
+						</observation>
+					</entry>
+					
+					<entry typeCode="DRIV">
+						<observation classCode="OBS" moodCode="EVN">
+							<!-- ** Sexual Orientation ** -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.501" extension="2022-06-01"/>
+							
+							<id root="45efb604-7049-4a2e-ad33-d38557c7636c"/>
+							<!-- code SHALL be 11367-0 for Tobacco use (V2) -db -->
+							<code code="76690-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Sexual Orientation"/>
+							<statusCode code="completed"/>
+							<effectiveTime nullFlavor="NI">
+								
+							</effectiveTime>
+							<value xsi:type="CD" nullFlavor="UNK"/>
+						</observation>
+					</entry>
 					
 				</section>
 			</component>	
@@ -1632,7 +2059,37 @@
 				</section>
 			</component>				
 
-			<!-- removed Reason for Referral -db -->	
+			<component>				
+				<section>
+					<!-- Reason for Referral Section (V2) -->
+					<templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.1" extension="2014-06-09"/>
+					<templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.1"/>
+					<code code="42349-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Reason for Referral"/>
+					<title>REASON FOR REFERRAL</title>
+					<text>Ms Rebecca Larson is being referred to a Specialist for a Kidney examination.</text>
+					<entry>
+						<act classCode="PCPR" moodCode="INT">
+						<!--Patient Referral Act-->
+							<templateId root="2.16.840.1.113883.10.20.22.4.140" />
+							<id root="70bdd7db-e02d-4eff-9829-35e3b7d9e154" />
+							<code code="103696004" displayName="Patient referral to specialist" codeSystemName="SNOMED-CT" codeSystem="2.16.840.1.113883.6.96" />
+							<statusCode code="active" />
+							<effectiveTime value="20220615" />
+							<entryRelationship typeCode="RSON">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.19"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09" />
+									<!-- Note that this id equals the problem observation/id -->
+									<id root="db734647-fc99-424c-a864-7e3cda82e703" />
+									<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4" />
+									<statusCode code="completed" />
+									<value xsi:type="CD" code="236578006" displayName="Chronic rejection of renal transplant" codeSystem="2.16.840.1.113883.6.96" />
+								</observation>
+							</entryRelationship>
+						</act>
+					</entry>
+				</section>
+			</component>
 			
 			<!-- added Mental Status Section (V2) (used to be NEW in R2.0) 2.16.840.1.113883.10.20.22.2.56 as required by VDT inp test data -db -->
 			<!-- 
@@ -1658,15 +2115,106 @@
 			FUNCTIONAL STATUS
 			********************************************************
 			-->			
-			<component>				
-				<section nullFlavor="NI">
+						<component>				
+				<section>
 					<!-- Functional Status Section (V2)-->
 					<templateId root="2.16.840.1.113883.10.20.22.2.14" extension="2014-06-09"/>
 					<!-- Functional Status Section -->
 					<templateId root="2.16.840.1.113883.10.20.22.2.14"/>
 					<code code="47420-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Functional Status"/>
 					<title>FUNCTIONAL STATUS</title>
-					<text>No Functional Status information</text>
+					<text>
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Functional Category</th>
+									<th>Effective Dates</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td ID="FUNC1">Dependence on Cane</td>
+									<td>May 01, 2005</td>
+								</tr>
+
+								<tr>
+									<td ID="FUNC2">Do you have serious difficulty walking or climbing stairs - Yes</td>
+									<td>June 22, 2022</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<entry>
+						<organizer classCode="CLUSTER" moodCode="EVN">
+							<!-- Functional Status Organizer (V2) -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.66" extension="2014-06-09"/>
+							<!-- Functional Status Result Organizer -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.66"/>
+							<id root="a7bc1062-8649-42a0-833d-eed65bd017c9"/>
+							<code code="d5" displayName="Self-Care" codeSystem="2.16.840.1.113883.6.254" codeSystemName="ICF"/>
+							<statusCode code="completed"/>
+							<component>
+								<!-- cane -->
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- Functional Status Observation (V2)-->
+									<templateId root="2.16.840.1.113883.10.20.22.4.67" extension="2014-06-09"/>
+									<!-- Functional Status Result Observation -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.67"/>
+									<id root="b63a8636-cfff-4461-b018-40ba58ba8b32"/>
+									<code code="54522-8" displayName="Functional status" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+									<text>
+										<reference value="#FUNC1"/>
+									</text>
+									<statusCode code="completed"/>
+									<effectiveTime value="20050501"/>
+									<value xsi:type="CD" code="105504002" displayName="Dependence on Cane" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+								</observation>
+							</component>
+							<component>
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- Self-Care Activities (ADL and IADL) -->
+									<templateId root="2.16.840.1.113883.10.20.22.4.128"/>
+									<id root="c6b5a04b-2bf4-49d1-8336-636a3813df0a"/>
+									<code nullFlavor="NA" />
+									<statusCode code="completed"/>
+									<effectiveTime value="20050501"/>
+									<value xsi:type="CD" code="371153006" displayName="Independent" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT"/>
+								</observation>
+							</component>						
+						</organizer>
+					</entry>
+					<entry>
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.505"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.505"
+							extension="2023-05-01"/>
+							<code code="89571-4" displayName="Disability Status [CUBS]"
+							codeSystem="2.16.840.1.113883.6.1"/>
+							<statusCode code="completed"/>
+							<effectiveTime value="20221111"/>
+							<!-- From LOINC Answer Set associated with Disability Status [CUBS] -->
+							<value xsi:type="CD" code="LA29243-5"
+							displayName="I'm Vulnerable - I sometimes or periodically have acute or chronic symptoms affecting housing, employment, social interactions, etc."
+							codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+							<!-- May contain an Assessment Scale template With Assessment Scale observation containing the disability related questions -->
+							<entryRelationship typeCode="COMP">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.69"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.69" extension="2022-06-01"/>
+									<id root="c6b5a04b-2bf4-49d1-8336-636a3813df0b"/>
+									<code code="69859-7"
+									displayName="Do you have serious difficulty walking or climbing stairs"
+									codeSystem="2.16.840.1.113883.6.1"
+									codeSystemName="LOINC"/>
+									<statusCode code="completed"/>
+									<effectiveTime value="20120214"/>
+									<value xsi:type="CD" code="LA33-6"
+										displayName="Yes"
+										codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+									</observation>
+							</entryRelationship>
+						</observation>
+					</entry>
 				</section>
 			</component>
 		
@@ -1810,6 +2358,127 @@
                 </entry>
             </section>
         </component>
+        
+        <!--  Payers section -->
+       <component>
+    		<section>
+    				<templateId root="2.16.840.1.113883.10.20.22.2.18"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.18" extension="2015-08-01" />
+					<!-- ******** Payers section template ******** -->
+					<code code="48768-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Payers" />
+					<title>Insurance Providers</title>
+					<text>Health Insurance Information</text>
+					<entry typeCode="DRIV">
+						<act classCode="ACT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.60"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.60" extension="2015-08-01" />
+							<id root="1fe2cdd0-7aad-11db-9fe1-0800200c9a66" />
+							<code code="48768-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Payment sources" />
+							<statusCode code="completed" />
+							<effectiveTime value="20150101"/>
+							<entryRelationship typeCode="COMP">
+								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.61"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.61" extension="2015-08-01" />
+									<id root="2.16.840.1.113883.19" extension="Acme Gold Plan" />
+									<code code="PR"
+									codeSystemName="Insurance Type Code"
+									codeSystem="2.16.840.1.113883.6.255.1336">
+										<translation code="72" displayName="PPO"
+										codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="Source of Payment Typology (PHDSC)"></translation>
+									</code>
+									<statusCode code="completed" />
+									<!-- Payer -->
+									<performer typeCode="PRF">
+										<templateId root="2.16.840.1.113883.10.20.22.4.87" />
+										<time>
+										<low nullFlavor="UNK" />
+										<high nullFlavor="UNK" />
+										</time>
+										<assignedEntity>
+											<id root="2.16.840.1.113883.19" />
+											<code code="PAYOR" codeSystem="2.16.840.1.113883.5.110" codeSystemName="HL7 RoleCode" />
+											<addr use="WP">
+												<streetAddressLine>123 Insurance Road</streetAddressLine>
+												<city>Blue Bell</city>
+												<state>MA</state>
+												<postalCode>02368</postalCode>
+												<country>US</country>
+											</addr>
+											<telecom value="tel:+(555)555-1515" use="WP" />
+											<representedOrganization>
+												<name>Example Payer Organization</name>
+												<telecom value="tel:+(555)555-1515" use="WP" />
+												<addr use="WP">
+													<streetAddressLine>123 Insurance Road</streetAddressLine>
+													<city>Blue Bell</city>
+													<state>MA</state>
+													<postalCode>02368</postalCode>
+													<country>US</country>
+												</addr>
+											</representedOrganization>
+										</assignedEntity>
+									</performer>
+									<!-- Covered party -->
+									<participant typeCode="COV">
+										<templateId root="2.16.840.1.113883.10.20.22.4.89" />
+										<time>
+											<low nullFlavor="UNK" />
+											<high nullFlavor="UNK" />
+										</time>
+										<participantRole classCode="PAT">
+										<!-- Health plan ID for patient. -->
+											<id root="1.1.1.1.1.1.1.1.14" extension="88800933502" />
+											<code code="FAMDEP" codeSystem="2.16.840.1.113883.5.111" />
+											<addr use="HP">
+												<!-- HP is "primary home" from codeSystem 2.16.840.1.113883.5.1119 -->
+												<streetAddressLine>1357 Amber Dr</streetAddressLine>
+												<city>Beaverton</city>
+												<state>OR</state>
+												<postalCode>97006</postalCode>
+												<country>US</country>
+												<!-- US is "United States" from ISO 3166-1 Country Codes: 1.0.3166.1 -->
+											</addr>
+											<playingEntity>
+												<name>
+												<!-- Name is needed if different than name on health plan. -->
+													<given>Alice</given>
+													<family>Newman</family>
+												</name>
+												<sdtc:birthTime value="19700501"/>
+											</playingEntity>
+										</participantRole>
+									</participant>
+									<!-- Policy holder -->
+									<participant typeCode="HLD">
+										<templateId root="2.16.840.1.113883.10.20.22.4.90" />
+										<participantRole>
+											<id extension="888009335" root="2.16.840.1.113883.19" />
+											<addr use="HP">
+												<!-- HP is "primary home" from codeSystem 2.16.840.1.113883.5.1119 -->
+												<streetAddressLine>1357 Amber Dr</streetAddressLine>
+												<city>Beaverton</city>
+												<state>OR</state>
+												<postalCode>97006</postalCode>
+												<country>US</country>
+												<!-- US is "United States" from ISO 3166-1 Country Codes: 1.0.3166.1 -->
+											</addr>
+										</participantRole>
+									</participant>
+									<entryRelationship typeCode="REFR">
+										<act classCode="ACT" moodCode="DEF">
+											<id root="1.1.1.1.1.1.1.1.14"/>
+											<code nullFlavor="NI"/>
+											<text>Acme Gold Plan</text>
+										</act>
+									</entryRelationship>
+									
+								</act>
+							</entryRelationship>
+						</act>
+					</entry>
+			</section>
+    	</component>
 		
 		</structuredBody>
 	</component>
